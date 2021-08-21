@@ -12,15 +12,15 @@ import { ReservasComponent } from './reservas/reservas.component';
 
 const routes: Routes = [
   {
-    path: '/home',
+    path: 'home',
     component: HomeComponent
   },
   {
-    path: '/conocenos',
+    path: 'conocenos',
     component: QuienessomosComponent
   },
   {
-    path: '/contacto',
+    path: 'contacto',
     component: ContactanosComponent
   },
   {
@@ -29,23 +29,23 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: '/registro',
+    path: 'registro',
     component: RegistroComponent
   },
   {
-    path: '/inicio',
+    path: 'inicio',
     component: InicioComponent
   },
   {
-    path: '/inicio/perfil',
+    path: 'inicio/perfil',
     component: PerfilComponent
   },
   {
-    path: '/inicio/mis-reservas',
+    path: 'inicio/mis-reservas',
     component: ReservasComponent
   },
   {
-    path: '/inicio/reservar',
+    path: 'inicio/reservar',
     component: ReservarComponent
   }
 ];
