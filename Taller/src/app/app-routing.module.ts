@@ -12,40 +12,40 @@ import { ReservasComponent } from './reservas/reservas.component';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: 'Taller/home',
     component: HomeComponent
   },
   {
-    path: 'conocenos',
+    path: 'Taller/conocenos',
     component: QuienessomosComponent
   },
   {
-    path: 'contacto',
+    path: 'Taller/contacto',
     component: ContactanosComponent
   },
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: 'Taller/home',
     pathMatch: 'full'
   },
   {
-    path: 'registro',
+    path: 'Taller/registro',
     component: RegistroComponent
   },
   {
-    path: 'inicio',
+    path: 'Taller/inicio',
     component: InicioComponent
   },
   {
-    path: 'inicio/perfil',
+    path: 'Taller/inicio/perfil',
     component: PerfilComponent
   },
   {
-    path: 'inicio/mis-reservas',
+    path: 'Taller/inicio/mis-reservas',
     component: ReservasComponent
   },
   {
-    path: 'inicio/reservar',
+    path: 'Taller/inicio/reservar',
     component: ReservarComponent
   }
 ];
