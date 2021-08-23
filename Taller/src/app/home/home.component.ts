@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() {
+  constructor(private router: Router) {
     localStorage.setItem("usuario", "");
     localStorage.setItem("id", "");
   }
@@ -16,10 +17,26 @@ export class HomeComponent implements OnInit {
   }
 
   iniciarSesion() {
-    var user = ((document.getElementById("usertxt") as HTMLInputElement).value); 
+    var user = ((document.getElementById("usertxt") as HTMLInputElement).value);
     var pass = ((document.getElementById("passwordtxt") as HTMLInputElement).value);
     console.log("El usuario es: " + user);
     console.log("La contraseña es: " + pass);
+  }
+
+  conocenos() {
+    this.router.navigate(['.conocenos'])
+  }
+
+  contacto() {
+    this.router.navigate(['.conocenos'])
+  }
+
+  home() {
+    this.router.navigate(['.home'])
+  }
+
+  registro() {
+    this.router.navigate(['.registro'])
   }
 
 }
