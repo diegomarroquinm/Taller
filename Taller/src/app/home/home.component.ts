@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    localStorage.setItem("usuario", "");
+    localStorage.setItem("id", "");
+  }
 
   ngOnInit(): void {
+  }
+
+  iniciarSesion() {
+    var user = ((document.getElementById("usertxt") as HTMLInputElement).value); 
+    var pass = ((document.getElementById("passwordtxt") as HTMLInputElement).value);
+    console.log("El usuario es: " + user);
+    console.log("La contraseña es: " + pass);
   }
 
 }
