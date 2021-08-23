@@ -24,11 +24,11 @@ export class HomeComponent implements OnInit {
   }
 
   conocenos() {
-    this.router.navigate(['.conocenos'])
+    this.router.navigate(['conocenos'])
   }
 
   contacto() {
-    this.router.navigate(['.conocenos'])
+    this.router.navigate(['contacto'])
   }
 
   home() {
