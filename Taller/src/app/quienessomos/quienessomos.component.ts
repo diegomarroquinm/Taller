@@ -21,19 +21,19 @@ export class QuienessomosComponent implements OnInit {
   }
 
   conocenos() {
-    this.router.navigate(['.conocenos'])
+    this.router.navigate(['conocenos'])
   }
 
   contacto() {
-    this.router.navigate(['.conocenos'])
+    this.router.navigate(['contacto'])
   }
 
   home() {
-    this.router.navigate(['.home'])
+    this.router.navigate(['home'])
   }
 
   registro() {
-    this.router.navigate(['.registro'])
+    this.router.navigate(['registro'])
   }
 
 }

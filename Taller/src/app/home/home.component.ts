@@ -32,11 +32,11 @@ export class HomeComponent implements OnInit {
   }
 
   home() {
-    this.router.navigate(['.home'])
+    this.router.navigate(['home'])
   }
 
   registro() {
-    this.router.navigate(['.registro'])
+    this.router.navigate(['registro'])
   }
 
 }
