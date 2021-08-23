@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reservar',
@@ -7,9 +8,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReservarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  hacerReserva() {
+
+  }
+
+  inicio() {
+    this.router.navigate(['.inicio']);
+  }
+
+  perfil() {
+    this.router.navigate(['.inicio/perfil']);
+  }
+
+  reservas() {
+    this.router.navigate(['.inicio/mis-reservas']);
+  }
+
+  reservar() {
+    this.router.navigate(['.inicio/reservar']);
+  }
+
+  cerrarSesion() {
+    this.router.navigate(['.home']);
+    localStorage.setItem("user", "");
+    localStorage.setItem("id", "");
   }
 
 }
