@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import * as globales from "../globales";
 
 @Component({
   selector: 'app-home',
@@ -8,9 +10,10 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router) {
-    localStorage.setItem("usuario", "");
-    localStorage.setItem("id", "");
+  loginurl: string = `http://${globales.ip}:${globales.port}/usuario/login`
+
+  constructor(private router: Router, private httpClient: HttpClient) {
+
   }
 
   ngOnInit(): void {
@@ -19,16 +22,21 @@ export class HomeComponent implements OnInit {
   iniciarSesion() {
     var user = ((document.getElementById("usertxt") as HTMLInputElement).value);
     var pass = ((document.getElementById("passwordtxt") as HTMLInputElement).value);
-    console.log("El usuario es: " + user);
-    console.log("La contraseña es: " + pass);
-  }
-
-  conocenos() {
-    this.router.navigate(['conocenos'])
-  }
-
-  contacto() {
-    this.router.navigate(['contacto'])
+    if (user != "" && pass != "") {
+      let jsonData = { usuario: user, password: pass };
+      this.httpClient.post(this.loginurl, jsonData).toPromise().then((data: any) => {
+        if (!data.error) {
+          console.log(data);
+          localStorage.setItem("user", data.usuario);
+          localStorage.setItem("id", data.id);
+          localStorage.setItem("correo", data.correo);
+          localStorage.setItem("contra", data.password);
+          this.router.navigate(['inicio']);
+        } else {
+          
+        }
+      })
+    }
   }
 
   home() {

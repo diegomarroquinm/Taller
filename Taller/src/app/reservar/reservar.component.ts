@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import * as globales from "../globales";
 
 @Component({
   selector: 'app-reservar',
@@ -8,17 +10,26 @@ import { Router } from '@angular/router';
 })
 export class ReservarComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  reservarurl: string = `http://${globales.ip}:${globales.port}/usuario/nuevaReserva`
+
+  constructor(private router: Router, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
   }
 
   hacerReserva() {
-
-  }
-
-  inicio() {
-    this.router.navigate(['inicio']);
+    var fecha = ((document.getElementById("datetxt") as HTMLInputElement).value);
+    var horas = ((document.getElementById("timetxt") as HTMLInputElement).value);
+    var hora = horas + ":00";
+    console.log(fecha);
+    console.log(hora);
+    if (fecha != "" && hora != "") {
+      let jsonData = { id: localStorage.getItem("id"), fecha: fecha, hora: hora };
+      this.httpClient.post(this.reservarurl, jsonData).toPromise().then((data: any) => {
+        console.log(data);
+        this.router.navigate(['inicio']);
+      })
+    }
   }
 
   perfil() {
@@ -26,7 +37,7 @@ export class ReservarComponent implements OnInit {
   }
 
   reservas() {
-    this.router.navigate(['inicio/mis-reservas']);
+    this.router.navigate(['inicio']);
   }
 
   reservar() {
@@ -37,6 +48,8 @@ export class ReservarComponent implements OnInit {
     this.router.navigate(['home']);
     localStorage.setItem("user", "");
     localStorage.setItem("id", "");
+    localStorage.setItem("correo", "");
+    localStorage.setItem("contra", "");
   }
 
 }

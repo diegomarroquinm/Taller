@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import * as globales from "../globales";
 
 @Component({
   selector: 'app-reservas',
@@ -8,17 +10,21 @@ import { Router } from '@angular/router';
 })
 export class ReservasComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  verurl: string = `http://${globales.ip}:${globales.port}/usuario/nuevaReserva?id=${localStorage.getItem("id")}`;
+  tablar:Array<any> = new Array<any>();
+  
+  constructor(private router: Router, private httpClient: HttpClient) {
+
+  }
+
 
   ngOnInit(): void {
-  }
 
-  verReservas() {
+    this.httpClient.get(this.verurl).toPromise().then((data: any) => {
+      console.log(data);
+      this.tablar = data;
+    })
 
-  }
-
-  inicio() {
-    this.router.navigate(['inicio']);
   }
 
   perfil() {
@@ -26,7 +32,7 @@ export class ReservasComponent implements OnInit {
   }
 
   reservas() {
-    this.router.navigate(['inicio/mis-reservas']);
+    this.router.navigate(['inicio']);
   }
 
   reservar() {
@@ -37,6 +43,8 @@ export class ReservasComponent implements OnInit {
     this.router.navigate(['home']);
     localStorage.setItem("user", "");
     localStorage.setItem("id", "");
+    localStorage.setItem("correo", "");
+    localStorage.setItem("contra", "");
   }
 
 }

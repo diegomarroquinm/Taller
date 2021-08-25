@@ -1,7 +1,7 @@
 <div class="bg-dark" style="height: 100vh;">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" type="button" (click)="inicio()">Inicio</a>
+            <a class="navbar-brand" type="button" (click)="reservas()">Mis Reservas</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -9,11 +9,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
+                    <li class="nav-item me-3">
                         <a class="nav-link active" aria-current="page" type="button" (click)="perfil()">Perfil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" type="button" (click)="reservas()">Mis Reservas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" type="button" (click)="reservar()">Reservar</a>
@@ -40,8 +37,8 @@
                         <input type="time" class="form-control" id="timetxt">
                     </div>
                 </form>
-                <button class="btn btn-success me-5">Hacer Reserva</button>
-                <button class="btn btn-danger">Cancelar</button>
+                <button class="btn btn-success me-5" (click)="hacerReserva()">Hacer Reserva</button>
+                <button class="btn btn-danger" (click)="reservas()">Cancelar</button>
             </div>
         </div>
     </div>
