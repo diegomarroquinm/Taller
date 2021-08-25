@@ -34,15 +34,13 @@
                             <th scope="col">No.</th>
                             <th scope="col">Fecha</th>
                             <th scope="col">Hora</th>
-                            <th scope="col">Habitación</th>
                         </tr>
                     </thead>
-                    <tbody *ngFor="let item of tablar">
+                    <tbody *ngFor="let item of datos">
                         <tr>
                             <td>{{item.num}}</td>
                             <td>{{item.fecha}}</td>
                             <td>{{item.hora}}</td>
-                            <td>-</td>
                         </tr>
                     </tbody>
                 </table>

@@ -18,7 +18,7 @@ export class PerfilComponent implements OnInit {
   ponercontrasena = localStorage.getItem("contra");
 
   constructor(private router: Router, private httpClient: HttpClient) {
-    
+
   }
 
   ngOnInit(): void {
@@ -28,21 +28,32 @@ export class PerfilComponent implements OnInit {
     var usuario = ((document.getElementById("usertxt") as HTMLInputElement).value);
     var correo = ((document.getElementById("emailtxt") as HTMLInputElement).value);
     var pass = ((document.getElementById("passwordtxt") as HTMLInputElement).value);
+    var pass2 = ((document.getElementById("passwordtxt2") as HTMLInputElement).value);
     var estado = 1;
-    if (usuario != "" && pass != "" && correo != "") {
-      let jsonData = { correo: correo, usuario: usuario, password: pass, id_estado: estado };
-      this.httpClient.put(this.editurl, jsonData).toPromise().then((data: any) => {
-        console.log(data);
-        localStorage.setItem("user", data.user);
-        localStorage.setItem("id", data.id);
-        this.router.navigate(['inicio']);
-      })
+    if (usuario != "" && pass != "" && correo != "" && pass2 != "") {
+      if (pass == pass2) {
+        let jsonData = { correo: correo, usuario: usuario, password: pass, id_estado: estado };
+        this.httpClient.put(this.editurl, jsonData).toPromise().then((data: any) => {
+          if (!data.error) {
+            localStorage.setItem("user", usuario);
+            localStorage.setItem("correo", correo);
+            localStorage.setItem("contra", pass)
+            this.router.navigate(['inicio']);
+          } else {
+            alert("Ha ocurrido un error");
+          }
+        })
+      } else {
+        alert("Las contraseñas no coinciden");
+      }
+    } else {
+      alert("Uno de los campos está vacío");
     }
   }
 
   eliminarCuenta() {
-    this.httpClient.delete(this.editurl).toPromise().then((data: any) => {
-      console.log(data);
+    this.httpClient.delete(this.deleteurl).toPromise().then((data: any) => {
+      alert("Cuenta eliminada");
       this.router.navigate(['home']);
     })
   }

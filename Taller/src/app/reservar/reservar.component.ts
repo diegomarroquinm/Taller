@@ -10,7 +10,7 @@ import * as globales from "../globales";
 })
 export class ReservarComponent implements OnInit {
 
-  reservarurl: string = `http://${globales.ip}:${globales.port}/usuario/nuevaReserva`
+  reservarurl: string = `http://${globales.ip}:${globales.port}/reserva/nuevaReserva`;
 
   constructor(private router: Router, private httpClient: HttpClient) { }
 
@@ -24,11 +24,16 @@ export class ReservarComponent implements OnInit {
     console.log(fecha);
     console.log(hora);
     if (fecha != "" && hora != "") {
-      let jsonData = { id: localStorage.getItem("id"), fecha: fecha, hora: hora };
+      let jsonData = { id_usuario: localStorage.getItem("id"), fecha: fecha, hora: hora };
       this.httpClient.post(this.reservarurl, jsonData).toPromise().then((data: any) => {
-        console.log(data);
-        this.router.navigate(['inicio']);
+        if (!data.error) {
+          this.router.navigate(['inicio']);
+        } else {
+          alert("Ha ocurrido un error");
+        }
       })
+    } else {
+      alert("Por favor llenar todos los campos");
     }
   }
 

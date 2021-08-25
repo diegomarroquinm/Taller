@@ -26,16 +26,18 @@ export class HomeComponent implements OnInit {
       let jsonData = { usuario: user, password: pass };
       this.httpClient.post(this.loginurl, jsonData).toPromise().then((data: any) => {
         if (!data.error) {
-          console.log(data);
+          console.log(data)
           localStorage.setItem("user", data.usuario);
           localStorage.setItem("id", data.id);
           localStorage.setItem("correo", data.correo);
           localStorage.setItem("contra", data.password);
           this.router.navigate(['inicio']);
         } else {
-          
+          alert("Usuario o contraseña incorrectos");
         }
       })
+    } else {
+      alert("Hay un campo vacío");
     }
   }
 

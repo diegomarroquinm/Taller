@@ -27,16 +27,21 @@ export class RegistroComponent implements OnInit {
     var pass = ((document.getElementById("passwordtxt") as HTMLInputElement).value);
     var pass2 = ((document.getElementById("passwordtxt2") as HTMLInputElement).value);
     var estado = 1;
-    if (usuario != "" && pass != "" && correo != "") {
+    if (usuario != "" && pass != "" && correo != "" && pass2 != "") {
       if (pass == pass2) {
         let jsonData = { correo: correo, usuario: usuario, password: pass, id_estado: estado };
         this.httpClient.post(this.registrourl, jsonData).toPromise().then((data: any) => {
-          console.log(data);
-          localStorage.setItem("user", data.user);
-          localStorage.setItem("id", data.id);
-          this.router.navigate(['inicio']);
+          if (!data.error) {
+            this.router.navigate(['home']);
+          } else {
+            alert("Ha ocurrdo un error");
+          }
         })
+      } else {
+        alert("Las contraseñas no coinciden, inténtelo nuevamente");
       }
+    } else {
+      alert("Por favor llenar todos los campos");
     }
   }
 

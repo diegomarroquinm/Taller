@@ -10,9 +10,9 @@ import * as globales from "../globales";
 })
 export class ReservasComponent implements OnInit {
 
-  verurl: string = `http://${globales.ip}:${globales.port}/usuario/nuevaReserva?id=${localStorage.getItem("id")}`;
-  tablar:Array<any> = new Array<any>();
-  
+  verurl: string = `http://${globales.ip}:${globales.port}/reserva/obtenerReserva?id=${localStorage.getItem("id")}`;
+  datos = [{ num: 0, fecha: "", hora: "" }]
+
   constructor(private router: Router, private httpClient: HttpClient) {
 
   }
@@ -21,8 +21,20 @@ export class ReservasComponent implements OnInit {
   ngOnInit(): void {
 
     this.httpClient.get(this.verurl).toPromise().then((data: any) => {
-      console.log(data);
-      this.tablar = data;
+      this.datos.pop();
+      let cont = 1;
+      if (!data.error) {
+        data.forEach((el: any) => {
+          this.datos.push({
+            num: cont,
+            fecha: el.fecha.split("T")[0],
+            hora: el.hora
+          })
+          cont++;
+        });
+      } else {
+        alert("Ha ocurrido un error");
+      }
     })
 
   }
