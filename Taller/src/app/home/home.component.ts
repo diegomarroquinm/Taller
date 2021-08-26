@@ -10,7 +10,7 @@ import * as globales from "../globales";
 })
 export class HomeComponent implements OnInit {
 
-  loginurl: string = `http://${globales.ip}:${globales.port}/usuario/login/`
+  loginurl: string = `https://${globales.ip}:${globales.port}/usuario/login/`
 
   constructor(private router: Router, private httpClient: HttpClient) {
 
